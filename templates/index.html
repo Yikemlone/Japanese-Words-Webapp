@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+    <main>
+
+        <p>Select options</p>
+        <div class="options">
+            <form action="/" method="post">
+                <input class="checkmark" type="checkbox" name="options" value="jlpt_rating"> JLPT 
+                <input class="checkmark" type="checkbox" name="options" value="kanji"> Kanji 
+                <input class="checkmark" type="checkbox" name="options" value="kana"> Kana
+                <input class="checkmark" type="checkbox" name="options" value="meaning"> Meaning 
+                <input class="checkmark" type="checkbox" name="options" value="sound_file"> Sound
+                <input class="checkmark" type="checkbox" name="options" value="vocab_type"> Vocab type 
+                <input class="checkmark" type="checkbox" name="options" value="expression_kanji"> Expression Kanji 
+                <input class="checkmark" type="checkbox" name="options" value="expression_kana"> Expression Kana 
+                <input class="checkmark" type="checkbox" name="options" value="expression_meaning"> Expression Meaning
+                <input class="checkmark" type="checkbox" name="options" value="expression_sound_file"> Expression sound file
+                <input class="checkmark" type="checkbox" name="options" value="furigana"> Furigana 
+                <input class="checkmark" type="checkbox" name="options" value="expression_furigana"> Expression Furigana  
+                
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+        
+        <p>Results</p>
+        <table>
+            {% for option in options  %}
+                <tr>{% for n in range(option|length) %}
+                    <td> {{ option[loop.index0] }}  </td>
+                {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+
+
+        <script>
+            document.body.innerHTML = document.body.innerHTML.replace(/&lt;/g, '<').replace(/&gt;/g, '>') ;
+        </script>
+
+    </main>
+{% endblock %}

@@ -1,0 +1,71 @@
+:root {
+    --background-color: #111111;
+    --text-colour: #ffffff;
+}
+
+
+html {
+    background-color: var(--background-color);
+    color: var(--text-colour);
+    scroll-behavior: smooth;
+    /* box-sizing:  border-box; */
+}
+
+main {
+    display: grid;
+    justify-content: center;
+    
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+/* OPTIONS */
+.options {
+    display: grid;
+    justify-items: center;
+    list-style: none;
+    padding: 0;
+    cursor: pointer;
+    border-style: 1 solid White;
+}
+
+/* .options input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+} */
+
+/* .options:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+.options input:checked ~ .checkmark {
+    background-color: #2196F3;
+} */
+
+/* CHECKMARK */
+.checkmark {
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+}
+
+
+/* .container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+} */
