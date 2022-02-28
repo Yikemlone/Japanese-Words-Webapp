@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+    <main>
+        <!-- Displays the options -->
+        <div class="options">
+            <form action="/" method="post">
+                
+                <div class="text-box">
+                    <p>Number of words:</p> 
+                    <input type="text" name="amount">
+                </div>
+
+                <div class="buttons"> 
+                    {% for option in options %}                
+                        <article>
+                            <input type="checkbox" name="options" value={{option}}>
+                                <div>
+                                    {{options[option]}}
+                                </div>
+                        </article>
+                    {% endfor %}
+                </div>
+
+                <div class="submit">
+                    <input class="submit" type="submit" value="Submit">
+                </div>
+                
+            </form>
+        </div>
+        
+        <!-- Results returned from database -->
+        <div class="card-container">
+        
+        </div>
+
+    </main>
+
+    <script rel="text/javascript" src="{{ url_for('static', filename='javascript/script.js') }}"> </script>
+  <div class="card-container">
+      <div class="card">
+
+        <div class="card-value">
+          <h4><b>JLPT</b></h4>
+          <p>JLPT 1</p>
+        </div>
+
+        <div class="card-value">
+          <h4><b>Meaning</b></h4>
+          <p>Fuck her right in the pussy</p>
+        </div>
+
+        <div class="card-value">
+          <h4><b>Kana</b></h4>
+          <p>This is some Kana</p>
+        </div>
+
+        <div class="card-value">
+          <h4><b>Kana</b></h4>
+          <p>This is some Kana</p>
+        </div>
+
+      </div>
+  </div>
+    <script>
+        // display({{ data|tojson }});
+    </script>
+
+{% endblock %}
+
+<div class="options">
+    <form action="/" method="post">
+
+      <div class="text-box">
+        <p>Number of words:</p>
+        <input type="text" name="amount">
+      </div>
+
+      <div class="buttons">
+        {% for option in options %}
+          <article>
+            <input type="checkbox" name="options" value={{option}}>
+              <div>
+                {{options[option]}}
+              </div>
+          </article>
+        {% endfor %}
+      </div>
+
+      <div class="submit">
+        <input class="submit" type="submit" value="Submit">
+      </div>
+
+    </form>
+  </div>
+
+
+<div class="buttons">
+        {% for option in options %}
+          <article>
+            <input type="checkbox" name="options" value={{option}}>
+              <div>
+                {{options[option]}}
+              </div>
+          </article>
+        {% endfor %}
+      </div>
