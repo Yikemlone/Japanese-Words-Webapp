@@ -7,6 +7,7 @@ def create_db():
         cursor = connection.cursor()
         cursor.execute("""
             CREATE TABLE japanese(
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
                 jlpt_rating nvarchar(5),
                 kanji nvarchar(60),
                 kana nvarchar(50),
@@ -18,7 +19,7 @@ def create_db():
                 expression_meaning nvarchar(200),
                 expression_sound_file nvarchar(60),
                 furigana nvarchar(200),
-                expression_furigana varchar(350))  
+                expression_furigana varchar(350))
             """)
 
 
@@ -29,10 +30,12 @@ def populate_db():
         with open("japanese.csv", newline="", encoding="utf8") as csv_file:
             spam_reader = csv.reader(csv_file, delimiter=',')
             next(spam_reader)
-
+            count = 0
             for row in spam_reader:
+                count += 1
                 cursor.execute(f"""
                 INSERT INTO japanese values (
+                    {count},
                     '{row[0]}',
                     '{row[1]}',
                     '{row[2]}',
@@ -86,3 +89,10 @@ def select_partial(amount, selected_array):
         result = cursor.execute(select_string).fetchall()
 
     return result
+
+
+def select_all(amount, offset):
+    with sqlite3.Connection("Japanese.db") as connection:
+        cursor = connection.cursor()
+        data = cursor.execute(f"SELECT * FROM japanese WHERE id >= {offset} AND id <= {amount}").fetchall()
+    return data
