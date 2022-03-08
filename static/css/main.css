@@ -135,3 +135,7 @@ input[type=checkbox]:checked ~ div {
     background-color: #333;
     border-radius: 5%;
 }
+
+.hidden {
+    display: none;
+}

@@ -1,8 +1,15 @@
-document.body.innerHTML = document.body.innerHTML.replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+window.addEventListener("load", function() {
+    
+    document.body.innerHTML = document.body.innerHTML.replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+    cards = document.querySelector("cards");
 
-function display(options) {
-    str = JSON.stringify(options);
-    alert(str);
+    alert(cards);
+
+    function display(options) {
+        str = JSON.stringify(options);
+        alert(str);
+
+       
 
         //     <div class="card-container">
         //     {% for value in data %}
@@ -22,7 +29,9 @@ function display(options) {
         //         </div>
         //     {% endfor %}
         // </div>
-}
+    }
+})
+
 
 
 //  This is to copy back after
@@ -42,4 +51,4 @@ function display(options) {
 //         </div>
 //     {% endfor %}
 // </div>
-// {% endfor %}
+// {% endfor %}document.body.innerHTML = document.body.innerHTML.replace(/&lt;/g, '<').replace(/&gt;/g, '>');

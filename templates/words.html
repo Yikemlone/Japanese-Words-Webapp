@@ -5,5 +5,19 @@
 {% endblock %}
 
 {% block body %}
+
     We are inside the words.html page
+
+    <div class="cards">
+        {% for word in words_data %}
+            <div>
+                <div class="card hidden">
+                    {{word}}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <script rel="text/javascript" src="{{ url_for('static', filename='javascript/script.js') }}"> </script>
+
 {% endblock %}
