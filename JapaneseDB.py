@@ -94,5 +94,5 @@ def select_partial(amount, selected_array):
 def select_all(amount, offset):
     with sqlite3.Connection("Japanese.db") as connection:
         cursor = connection.cursor()
-        data = cursor.execute(f"SELECT * FROM japanese WHERE id >= {offset} AND id <= {amount}").fetchall()
+        data = cursor.execute(f"SELECT * FROM japanese WHERE id >= {amount} AND id <= {int(amount) + int(offset)}").fetchall()
     return data

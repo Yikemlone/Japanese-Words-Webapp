@@ -100,7 +100,7 @@ def set_cookie_data(time_frame, total_words):
     weeks = int(days_remaining / 7)
     total_months = future_date.month
 
-    lists = ["21", f"{total_days}", "18"]
+    lists = ["21", f"{total_days}", "1"]
     webpage.set_cookie("data", json.dumps(lists))
 
     return webpage
