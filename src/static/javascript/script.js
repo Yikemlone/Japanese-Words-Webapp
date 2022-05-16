@@ -1,27 +1,63 @@
+// This script file will get and load the data the user needs.
+var xmlHttpRequest;
 
 window.addEventListener("load", () => { 
-    document.body.innerHTML = document.body.innerHTML.replace(/&lt;/g, '<').replace(/&gt;/g, '>');
-    
-    setUpArrows();
-    displayCard("Words");
-
-    newElement = document.createElement("div");
-    newElement.append(document.createTextNode("This is text"));
-    newElement.setAttribute("class", "red");
-
-    newElement.addEventListener("click", () => {
-        newElement.setAttribute("class", "hidden");
-    });
-
-    document.body.append(newElement);
+    var button = document.querySelector("button");
+    button.addEventListener("click", getJapaneseData);
 });
+
+
+/**
+ * Makes an AJAX request to the Flask server for the users next set of words.
+ */
+function getJapaneseData() {
+    xmlHttpRequest = new XMLHttpRequest();
+
+    xmlHttpRequest.onreadystatechange = function () {
+        showJapaneseData();
+    }
+
+    xmlHttpRequest.open("GET", `/test`, true);
+    xmlHttpRequest.send();
+}
+
+
+/**
+ * This displays the data the AJAX request has received from the server, 
+ * if the data is valid and ready. 
+ */
+function showJapaneseData() {
+    if(xmlHttpRequest.readyState == 4 && xmlHttpRequest.status == 200)
+    {
+        // console.log(xmlHttpRequest.responseText);
+        var dataDiv = document.querySelector("div"); 
+        var data = JSON.parse(xmlHttpRequest.responseText)["data"];
+
+        // console.log(dataDiv);
+        console.log(data[0][1]);
+
+        // dataDiv.innerHTML = xmlHttpRequest.responseText;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 function populateCards(cardData) {
     str = JSON.stringify(options);
-
 }
-
 
 function setUpArrows() {
     leftArrow = document.createElement("div");
@@ -33,7 +69,6 @@ function setUpArrows() {
     document.body.append(leftArrow);
     document.body.append(rightArrow);
 }
-
 
 function displayCard(options) {
     str = JSON.stringify(options);
@@ -68,10 +103,7 @@ function displayCard(options) {
     // </div>
 }
 
-
-
-//  This is to copy back after
-
+// ? May use this later
 // {% for value in data %}
 // <div class="card">
 //     {% for n in range(value|length) %}

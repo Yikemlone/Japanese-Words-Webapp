@@ -1,0 +1,149 @@
+:root {
+    --background-color: #111111;
+    --text-colour: #ffffff;
+}
+
+/* General Style */
+html {
+    background-color: var(--background-color);
+    color: var(--text-colour);
+    scroll-behavior: smooth;
+    display: grid;
+    justify-content: center;
+}
+
+main {
+    display: grid;
+    justify-content: center;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+/* Options */
+.options {
+    display: grid;
+    align-items: center;
+
+    /* grid-gap: 2rem; */
+    border: #ffffff 1px solid;
+
+    grid-template-areas: 
+        "text-box"
+        "submit"
+        "buttons";
+}
+
+
+.buttons {
+    grid-area: buttons;
+    border: #ffffff 1px solid;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.text-box {
+    grid-area: text-box;
+    border: #ffffff 1px solid;
+}
+
+.submit {
+    grid-area: submit;
+    border: #ffffff 1px solid;
+}
+
+
+
+
+/* 
+ Changes the size of the boxes 
+.checkboxes-container {
+    display: flex;
+}
+
+article {
+    display: flex;
+    position: relative;
+    width: 140px;
+    height: 100px;
+    margin: 5px;
+    float: left;
+    border: 2px solid #50bcf2;
+    box-sizing: border-box;
+}
+
+ Allows the colour to be changed when clicked 
+article div {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 25px;
+    transition: .5s ease;
+}
+
+ Hides the checkbox and allows for the aritcles boxes to be clicked 
+article input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 140px;
+    height: 100px;
+    opacity: 0;
+    cursor: pointer;
+}
+
+Changes the colour if checked 
+input[type=checkbox]:checked ~ div {
+        background-color: #50bcf2;
+}
+
+ Cards 
+.card {
+    display: grid;
+} */
+
+
+.card {
+    display: flex;
+    row-gap: 3rem;
+    column-gap: 3rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+
+    width: 19rem; /* Makes them centered inside the container */
+    background-color: #222;
+    box-shadow: 0 4px 8px 0 rgba(255,0,255,0.1);
+    transition: 0.3s;
+    border-radius: 5%;
+    /* Aligns them along the horizontal */
+    /* align-items:  flex-start; */
+}
+
+.card:hover {
+    box-shadow: 0 4px 8px 0 rgba(255,0,255,0.7);
+}
+
+.card-value {
+    width: 6rem;
+    padding: 2rem;
+    min-height: 100px;
+    background-color: #333;
+    border-radius: 5%;
+}
+
+.hidden {
+    /* display: none; */
+    visibility: hidden;
+}
+
+.red {
+
+    background-color: red;
+    width: 300px;
+    height: 300px;
+}
