@@ -1,4 +1,5 @@
 static/sounds/
 __pycache__/  
 .idea/    
-Jap-Flask-App       
+Jap-Flask-App   
+.gitignore    
