@@ -1,5 +1,5 @@
 static/sounds/
 __pycache__/  
 .idea/    
-Jap-Flask-App   
-.gitignore    
+Jap-Flask-App
+.vscode/

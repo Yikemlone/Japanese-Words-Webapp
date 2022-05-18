@@ -2,11 +2,12 @@
 {% extends 'base.html' %}
 
 {% block head %}
-    <script rel="text/javascript" src="{{ url_for('static', filename='javascript/script.js') }}"> </script>
+    <script rel="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"> </script>
 {% endblock %}
 
 {% block body %}
+    <!-- This page will display the words the user. -->
     <p>We are inside the words.html page</p>
     <button>Click me</button>
-    <div></div>
+    <div class="card"></div>
 {% endblock %}

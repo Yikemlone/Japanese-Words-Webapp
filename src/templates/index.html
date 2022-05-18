@@ -5,15 +5,48 @@
 {% endblock %}
 
 {% block body %}
-  <!-- First time load -->
-  <form action="/" method="post">
-    <p>How many words do you want to learn?</p>
-    <input type="text" name="words-a-day">
+  <!-- First time load will take the user here or if the cookie is deleted. -->
 
-    <p>When do you want to complete this challenge?</p>
-    <input type="datetime" name="date-to-finish">
+  <form action="/cookie-data" method="post">
+    <!-- Phase 1 -->
+    <!-- Ask how many words they would like to learn -->
+    <div class="phase-1">
+        <div class="text-container">
+          <p>How many words do you want to learn?</p>
+        </div>
+      <input type="text" name="word-goal">
+    </div>
 
-    <input type="submit" value="Submit">
+    <!-- Phase 2 -->
+    <!-- Ask if they would like a date goal or a daily word goal -->
+    <button id="back-to-phase-1" class="button"><</button>
+
+    <div class="phase-2">
+      <p class="text-container" >Would you like to set a daily word goal or select a date goal?</p>
+      <input type="radio" name="goal-type" value="Date"> Date
+      <input type="radio" name="goal-type" value="Daily"> Daily
+      <!-- <button id="daily-word-goal" class="button" name="goal-type">Daily</button> -->
+      <!-- <button id="date-goal" class="button" name="goal-type">Date</button> -->
+    </div>
+
+    <!-- Phase 3 -->
+    <!-- Display the div for their selected goal -->
+    <!-- Date goal div -->
+    <div class="div-date-goal">
+      <p class="text-container" >When do you want to complete this challenge?</p>
+      <input type="datetime" name="date-to-finish">
+    </div>
+
+    <!-- Daily word goal div -->
+    <button id="back-to-phase-2"><</button>
+
+    <div class="div-daily-word-goal">
+      <p class="text-container">How many words would you like to learn a day?</p>
+      <input type="text" name="words-a-day">
+    </div>
+    
+    <input type="submit" value=">">
+
   </form>
   
 {% endblock %}

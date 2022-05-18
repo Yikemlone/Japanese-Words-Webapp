@@ -2,6 +2,7 @@ import sqlite3
 import csv
 
 
+# Creates the database for the the Japanese words. 
 def create_db():
     with sqlite3.connect("src/Japanese.db") as connection:
         cursor = connection.cursor()
@@ -23,6 +24,7 @@ def create_db():
             """)
 
 
+# Populates the database with Japanese words
 def populate_db():
     with sqlite3.connect("src/Japanese.db") as connection:
         cursor = connection.cursor()
@@ -51,6 +53,7 @@ def populate_db():
                 )""")
 
 
+# ! Need to remember what this is for
 def select_multiple_query(amount):
     select_string = f"SELECT jlpt_rating FROM japanese LIMIT {amount}"
 
@@ -61,6 +64,7 @@ def select_multiple_query(amount):
     return result
 
 
+# Selects the colum name with the limit of 10.
 def select_one(column_name):
     with sqlite3.Connection("src/Japanese.db") as connection:
         cursor = connection.cursor()
@@ -68,7 +72,7 @@ def select_one(column_name):
 
     return result
 
-
+# ! need to remember what this does
 def select_partial(amount, selected_array):
     select_string = "SELECT "
     last_index = len(selected_array)
@@ -91,6 +95,7 @@ def select_partial(amount, selected_array):
     return result
 
 
+# Selects all the coloms from a range
 def select_all(amount, offset):
     with sqlite3.Connection("src/Japanese.db") as connection:
         cursor = connection.cursor()

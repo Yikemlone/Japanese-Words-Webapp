@@ -2,6 +2,7 @@
 var xmlHttpRequest;
 
 window.addEventListener("load", () => { 
+    // alert(document.cookie);
     var button = document.querySelector("button");
     button.addEventListener("click", getJapaneseData);
 });
@@ -17,7 +18,7 @@ function getJapaneseData() {
         showJapaneseData();
     }
 
-    xmlHttpRequest.open("GET", `/test`, true);
+    xmlHttpRequest.open("GET", `/words-data`, true);
     xmlHttpRequest.send();
 }
 
@@ -29,14 +30,27 @@ function getJapaneseData() {
 function showJapaneseData() {
     if(xmlHttpRequest.readyState == 4 && xmlHttpRequest.status == 200)
     {
-        // console.log(xmlHttpRequest.responseText);
+        console.log(xmlHttpRequest.responseText);
         var dataDiv = document.querySelector("div"); 
         var data = JSON.parse(xmlHttpRequest.responseText)["data"];
 
-        // console.log(dataDiv);
-        console.log(data[0][1]);
+        console.log(data[0]);
+        table = "<table border='solid black 1px'>"
+        for(var i = 0; i < data[0].length; i++) {
+            table += "<tr>";
 
-        // dataDiv.innerHTML = xmlHttpRequest.responseText;
+            for(var j = 0; j < data[0].length; j++) {
+                table += "<td>";
+                table += data[i][j];
+                table += "</td>";
+            }
+
+            table += "</tr>";
+        }
+
+        table+= "</table>";
+
+        dataDiv.innerHTML = table;
     }
 }
 
