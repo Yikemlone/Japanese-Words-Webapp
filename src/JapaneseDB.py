@@ -53,51 +53,13 @@ def populate_db():
                 )""")
 
 
-# ! Need to remember what this is for
-def select_multiple_query(amount):
-    select_string = f"SELECT jlpt_rating FROM japanese LIMIT {amount}"
-
-    with sqlite3.Connection("src/Japanese.db") as connection:
-        cursor = connection.cursor()
-        result = cursor.execute(select_string).fetchall()
-
-    return result
-
-
-# Selects the colum name with the limit of 10.
-def select_one(column_name):
-    with sqlite3.Connection("src/Japanese.db") as connection:
-        cursor = connection.cursor()
-        result = cursor.execute(f"SELECT {column_name} FROM japanese LIMIT 10").fetchall()
-
-    return result
-
-# ! need to remember what this does
-def select_partial(amount, selected_array):
-    select_string = "SELECT "
-    last_index = len(selected_array)
-    index = 0
-
-    for selected in selected_array:
-        index += 1
-        if index == last_index:
-            select_string += selected + " "
-            continue
-
-        select_string += selected + ","
-
-    select_string += f"FROM japanese LIMIT {amount}"
-
-    with sqlite3.Connection("src/Japanese.db") as connection:
-        cursor = connection.cursor()
-        result = cursor.execute(select_string).fetchall()
-
-    return result
-
-
 # Selects all the coloms from a range
 def select_all(amount, offset):
     with sqlite3.Connection("src/Japanese.db") as connection:
         cursor = connection.cursor()
-        data = cursor.execute(f"SELECT * FROM japanese WHERE id >= {amount} AND id <= {int(amount) + int(offset)}").fetchall()
+        data = cursor.execute(f"SELECT * FROM japanese WHERE id >= {amount} AND id <= {int(amount) + int(offset) - 1}").fetchall()
     return data
+
+
+# TODO Make a query to sort by category's 
+
