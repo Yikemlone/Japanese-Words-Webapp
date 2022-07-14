@@ -1,4 +1,3 @@
-from tkinter.messagebox import NO
 from flask import Flask, render_template, url_for, request, redirect, make_response
 from os.path import exists
 from datetime import datetime
@@ -14,16 +13,17 @@ SOUNDS = os.path.join('static', 'sounds')
 # Allows for the sound files to be uploaded
 app.config['UPLOAD_FOLDER'] = SOUNDS
 
+
 if not exists("src/Japanese.db"):
     jpd.create_db()
     jpd.populate_db()
 
 
+# Loads index if cookie does not exist
 @app.route("/", methods=["GET"])
 def index():
-    if "settings" in request.cookies:
+    if "settings" in request.cookies and request.cookies.get("settings") != "null":
         return render_template('words.html')
-
     return render_template("index.html")
 
 
@@ -63,6 +63,6 @@ def words_data():
     return json.dumps({'status':'OK', 'settings': json.dumps(updated_settings, default=str), "data": words_data})
 
 
-@app.route("/completed", methods=["POST", "GET"])
+@app.route("/completed", methods=["GET"])
 def completed():
     return render_template('completed.html')

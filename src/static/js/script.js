@@ -2,10 +2,49 @@
 var xmlHttpRequest;
 
 window.addEventListener("load", () => { 
+    var settings = JSON.parse(getCookie("settings"));
+    var displaySettings = getCookie("display");
+
+    if(settings.WordGoal < settings.CurrentWordIndex) {
+        window.location = "/completed";
+    }
+
+    if(displaySettings !== "") {
+        displaySettings = JSON.parse(displaySettings);
+    } else {
+        displaySettingsJSON = {
+            "All" : true, 
+            "JLPT": true,
+            "Kanji": true,
+            "Kana": true, 
+            "English_Meaning": true,
+            "Vocab_Type": true,
+            "Expression_Kanji": true,
+            "Expression_Meaning": true,
+            "Furigana": true,
+            "Expression_Furigana": true
+        };
+
+        document.cookie = "display=" + JSON.stringify(displaySettingsJSON);
+    }
+
     var button = document.querySelector("button");
     button.addEventListener("click", getJapaneseData);
     getJapaneseData();
+
 });
+
+
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    
+    if (!value.includes(name)) {
+        return "";
+    }
+
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
 
 
 /**
@@ -13,12 +52,6 @@ window.addEventListener("load", () => {
  */
 function getJapaneseData() {
     xmlHttpRequest = new XMLHttpRequest();
-
-    var settings = JSON.parse(document.cookie.replace("settings=", ""));
-
-    if(settings.WordGoal < settings.CurrentWordIndex) {
-        window.location = "/completed";
-    }
 
     xmlHttpRequest.onreadystatechange = function () {
         showJapaneseData();
@@ -38,13 +71,21 @@ function showJapaneseData() {
     {
         //// console.log(xmlHttpRequest.responseText);
         var newCookieData = JSON.parse(xmlHttpRequest.responseText)["settings"];
-
         document.cookie = "settings=" + newCookieData;
 
         var dataDiv = document.querySelector("div"); 
         var data = JSON.parse(xmlHttpRequest.responseText)["data"];
+
+        // Need to make sure this isn't null
+        var displaySettings = JSON.parse(getCookie("display")); 
         
         table = "<table border='solid black 1px'>"
+
+        for(value in displaySettings) {
+            if(value) {
+
+            }
+        }
         for(var i = 0; i < data.length; i++) {
             table += "<tr>";
 
@@ -57,7 +98,6 @@ function showJapaneseData() {
             table += "</tr>";
         }
         table+= "</table>";
-
         dataDiv.innerHTML = table;
 
         // TODO - Replace the place holder table with the cards system.

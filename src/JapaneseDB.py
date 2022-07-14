@@ -1,6 +1,6 @@
 import sqlite3
 import csv
-
+from multipledispatch import dispatch
 
 # Creates the database for the the Japanese words. 
 def create_db():
@@ -54,6 +54,7 @@ def populate_db():
 
 
 # Selects all the coloms from a range
+@dispatch(int,int)
 def select_all(amount, offset):
     with sqlite3.Connection("src/Japanese.db") as connection:
         cursor = connection.cursor()
@@ -61,5 +62,11 @@ def select_all(amount, offset):
     return data
 
 
-# TODO Make a query to sort by category's 
+# Selects all coloms from a range and orders by colum
+@dispatch(int,int, str) 
+def select_all(amount, offset, order_by):
+    with sqlite3.Connection("src/Japanese.db") as connection:
+        cursor = connection.cursor()
+        data = cursor.execute(f"SELECT * FROM japanese WHERE id >= {amount} AND id <= {int(amount) + int(offset) - 1} ORDER BY {order_by}").fetchall()
+    return data
 

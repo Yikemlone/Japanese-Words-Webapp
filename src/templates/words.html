@@ -2,12 +2,22 @@
 {% extends 'base.html' %}
 
 {% block head %}
-    <script rel="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"> </script>
 {% endblock %}
 
 {% block body %}
     <!-- This page will display the words the user. -->
     <p>We are inside the words.html page</p>
     <button>Click me</button>
+
+    <div class="display-options">
+        <input type="checkbox" name="" id=""> JLPT
+        <input type="checkbox" name="" id=""> Meaning
+        <input type="checkbox" name="" id=""> Kanji 
+        <input type="checkbox" name="" id=""> Kana
+        <input type="checkbox" name="" id=""> Furigana
+    </div>
+
     <div class="card"></div>
+    
+    <script rel="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"> </script>
 {% endblock %}
