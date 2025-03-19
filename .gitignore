@@ -1,5 +1,5 @@
 static/sounds/
 __pycache__/  
 .idea/    
-Jap-Flask-App
 .vscode/
+.venv/

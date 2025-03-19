@@ -14,7 +14,7 @@ SOUNDS = os.path.join('static', 'sounds')
 app.config['UPLOAD_FOLDER'] = SOUNDS
 
 
-if not exists("src/Japanese.db"):
+if not exists("Japanese.db"):
     jpd.create_db()
     jpd.populate_db()
 

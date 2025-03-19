@@ -4,7 +4,7 @@ from multipledispatch import dispatch
 
 # Creates the database for the the Japanese words. 
 def create_db():
-    with sqlite3.connect("src/Japanese.db") as connection:
+    with sqlite3.connect("Japanese.db") as connection:
         cursor = connection.cursor()
         cursor.execute("""
             CREATE TABLE japanese(
@@ -26,10 +26,10 @@ def create_db():
 
 # Populates the database with Japanese words
 def populate_db():
-    with sqlite3.connect("src/Japanese.db") as connection:
+    with sqlite3.connect("Japanese.db") as connection:
         cursor = connection.cursor()
 
-        with open("src/japanese.csv", newline="", encoding="utf8") as csv_file:
+        with open("japanese.csv", newline="", encoding="utf8") as csv_file:
             spam_reader = csv.reader(csv_file, delimiter=',')
             next(spam_reader)
             count = 0
@@ -56,7 +56,7 @@ def populate_db():
 # Selects all the coloms from a range
 @dispatch(int,int)
 def select_all(amount, offset):
-    with sqlite3.Connection("src/Japanese.db") as connection:
+    with sqlite3.Connection("Japanese.db") as connection:
         cursor = connection.cursor()
         data = cursor.execute(f"SELECT * FROM japanese WHERE id >= {amount} AND id <= {int(amount) + int(offset) - 1}").fetchall()
     return data
@@ -65,7 +65,7 @@ def select_all(amount, offset):
 # Selects all coloms from a range and orders by colum
 @dispatch(int,int, str) 
 def select_all(amount, offset, order_by):
-    with sqlite3.Connection("src/Japanese.db") as connection:
+    with sqlite3.Connection("Japanese.db") as connection:
         cursor = connection.cursor()
         data = cursor.execute(f"SELECT * FROM japanese WHERE id >= {amount} AND id <= {int(amount) + int(offset) - 1} ORDER BY {order_by}").fetchall()
     return data
